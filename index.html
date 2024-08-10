@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Identification Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+       input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #000;
+            border-radius: 4px;
+        }
+        button {
+            width: 30%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: 1px solid #000;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .output {
+            height:800px;
+            width :100%;
+            background-color:#40ffe073;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size:15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Unique Identification Converter</h1>
+
+    <h3>Convert Name to Unique Identification</h3>
+    
+    <input type="text" id="nameInput" placeholder="Enter Word or Name">
+    <center>
+    <button onclick="convertNameToID()">Convert</button>
+    </center>
+    <h3>Convert Unique Identification to Name</h3>
+    <input type="text" id="idInput" placeholder="Enter unique identification">
+    <center>
+    <button onclick="convertIDToName()">Convert</button>
+    </center>
+    <div class="output" id="output"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h6>Thank for using this service</h6>
+<h6>Make by Adrsh</h6>
+<br>
+    <script>
+        const idMapping = {
+            '  ':'-#72#',' ': '+372@#','A': '1ns-#9', 'B': '2as-@8', 'C': '3ds-$7', 'D': '4fs-%6',
+            'E': '5gs-^5', 'F': '6hs-&4', 'G': '7js-*3', 'H': '8ks-(2',
+            'I': '9ls-)_1', 'J': '0ms-+=0', 'K': '1&2-#9', 'L': '2os-@8',
+            'M': '3ps-$7', 'N': '4qs-%6', 'O': '5rs-^5', 'P': '6ts-&4',
+            'Q': '7us-*3', 'R': '8vs-(2', 'S': '9ws-)_1', 'T': '0xs-+=0',
+            'U': '1ys-#9', 'V': '2zs-@8', 'W': '3as-$7', 'X': '4bs-%6',
+            'Y': '5cs-^5', 'Z': '6ds-&4','.':'+#72#',',':'+£822','?':'u+#72',';':'+372&','!':'+£72#'
+        };
+
+        const reverseMapping = Object.fromEntries(Object.entries(idMapping).map(([key, value]) => [value, key]));
+
+        function convertNameToID() {
+            const name = document.getElementById('nameInput').value.toUpperCase();
+            let result = '';
+
+            for (let char of name) {
+                if (idMapping[char]) {
+                    result += idMapping[char] + ' ';
+                } else {
+                    result = 'Invalid character in name.';
+                    break;
+                }
+            }
+
+            document.getElementById('output').innerText = result.trim();
+        }
+
+        function convertIDToName() {
+            const idInput = document.getElementById('idInput').value.split(' ');
+            let result = '';
+
+            for (let id of idInput) {
+                if (reverseMapping[id]) {
+                    result += reverseMapping[id];
+                } else {
+                    result = 'Invalid unique identification.';
+                    break;
+                }
+            }
+
+            document.getElementById('output').innerText = result;
+        }
+    </script>
+
+</body>
+</html>
